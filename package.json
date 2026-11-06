@@ -1,0 +1,29 @@
+{
+  "name": "@tycho/security",
+  "version": "0.1.0",
+  "description": "Security audits of code and deployments",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "bin/",
+    "README.md",
+    "README.fr.md"
+  ],
+  "author": "Quatrain Technologies",
+  "copyright": "Quatrain Technologies",
+  "license": "AGPL-3.0-only",
+  "repository": "https://git.qtrn.io/tycho/tycho-security",
+  "publishConfig": {
+    "registry": "https://qtrn.io/"
+  },
+  "tycho": {
+    "module": "security",
+    "commands": [
+      "security",
+      "sec"
+    ],
+    "core": "^1.0.0",
+    "trust": "official"
+  }
+}
