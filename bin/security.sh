@@ -34,6 +34,10 @@ case "$DOMAIN" in
         shift
         ACTION="${1:-help}"
         case "$ACTION" in
+            credentials)
+                shift
+                exec bash "$(dirname "${BASH_SOURCE[0]}")/credentials.sh" "$@"
+                ;;
             easm)
                 shift
                 echo -e "\033[32m[tycho security deploy]\033[0m Auditing external attack surface (DNSSEC, TLS, CSP) for: ${1:-<domain>}"
@@ -48,7 +52,7 @@ case "$DOMAIN" in
                 echo -e "\033[34m[tycho security deploy]\033[0m Evaluating Article 21 risk management & supply chain controls..."
                 ;;
             *)
-                echo "Usage: tycho security deploy <easm|k8s-cis|passport|nis2> [options]"
+                echo "Usage: tycho security deploy <credentials|easm|k8s-cis|passport|nis2> [options]"
                 echo "       (alias: tycho sec deploy)"
                 exit 0
                 ;;

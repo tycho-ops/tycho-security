@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# kubectl stand-in for the live tests: services, secrets and port-forward.
+here="$(cd "$(dirname "$0")" && pwd)"
+args="$*"
+case "$args" in
+    "get service acme-server -n acme"|"get service console -n console") exit 0 ;;
+    "get service"*) exit 1 ;;
+    *"get secret acme-secrets -n acme"*ACME_ADMIN_PASSWORD*) printf '%s' 'Deployed-Passw0rd!' | base64 ;;
+    *"get secret console-secrets -n console"*CONSOLE_ADMIN_PASSWORD*) printf '%s' 'console-deployed-pass' | base64 ;;
+    "port-forward -n "*)
+        ns="$3"; ports="${5%%:*}"
+        exec python3 "$here/mock_service.py" "$ports" "$ns" ;;
+    *) echo "kubectl shim: unhandled: $args" >&2; exit 1 ;;
+esac

@@ -1,0 +1,18 @@
+{
+  "name": "acme-server",
+  "requiredEnv": ["ACME_ADMIN_LOGIN", "ACME_ADMIN_PASSWORD"],
+  "tycho": {
+    "credentials": [
+      {
+        "account": "administrator",
+        "replacement": "rename",
+        "factory": { "login": "admin", "password": "admin" },
+        "login": "ACME_ADMIN_LOGIN",
+        "password": "ACME_ADMIN_PASSWORD",
+        "secret": { "name": "acme-secrets", "loginKey": "ACME_ADMIN_LOGIN", "passwordKey": "ACME_ADMIN_PASSWORD" },
+        "exposure": "after-replacement",
+        "probe": { "namespace": "acme", "service": "acme-server", "port": 8080, "type": "http-basic", "path": "/api/auth/validate", "accept": "\"valid\":true" }
+      }
+    ]
+  }
+}

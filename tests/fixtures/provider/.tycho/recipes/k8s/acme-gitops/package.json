@@ -1,0 +1,8 @@
+{
+  "name": "acme-gitops",
+  "tycho": {
+    "credentials": [
+      { "account": "built-in", "replacement": "none", "factory": { "login": "admin", "passwordFrom": { "secret": "gitops-initial-secret", "key": "password" } } }
+    ]
+  }
+}

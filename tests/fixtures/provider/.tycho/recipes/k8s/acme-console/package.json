@@ -1,0 +1,18 @@
+{
+  "name": "acme-console",
+  "requiredEnv": ["CONSOLE_ADMIN_PASSWORD"],
+  "optionalEnv": ["CONSOLE_ADMIN_USER"],
+  "tycho": {
+    "credentials": [
+      {
+        "account": "bootstrap",
+        "replacement": "rename",
+        "factory": { "login": "admin" },
+        "login": "CONSOLE_ADMIN_USER",
+        "password": "CONSOLE_ADMIN_PASSWORD",
+        "secret": { "name": "console-secrets", "loginKey": "CONSOLE_ADMIN_USER", "passwordKey": "CONSOLE_ADMIN_PASSWORD" },
+        "probe": { "namespace": "console", "service": "console", "port": 8080, "type": "http-post", "path": "/token", "contentType": "form", "body": "grant_type=password&username={login}&password={password}", "accept": "200" }
+      }
+    ]
+  }
+}

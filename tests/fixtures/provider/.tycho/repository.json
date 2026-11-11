@@ -1,0 +1,10 @@
+{
+  "name": "acme-recipes",
+  "type": "recipes",
+  "variables": {
+    "ACME_ADMIN_LOGIN": { "type": "string", "description": "Break-glass administrator login", "example": "acme-ops-4f2a", "secret": true },
+    "ACME_ADMIN_PASSWORD": { "type": "string", "description": "Break-glass administrator password", "secret": true },
+    "CONSOLE_ADMIN_USER": { "type": "string", "description": "Bootstrap administrator", "default": "admin" },
+    "CONSOLE_ADMIN_PASSWORD": { "type": "string", "description": "Bootstrap password", "secret": true, "generate": "hex:32" }
+  }
+}
